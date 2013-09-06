@@ -1,0 +1,30 @@
+.data
+array:		.word		0:12	# array de 12 inteiros
+
+.text
+.globl main
+
+main:
+	la $0, array 	# índice do vetor em bytes
+	la $5, array 	# base do vetor
+	li $1, 0 	# i para percorrer o vetor
+	li $2, 12 	# tamanho do vetor
+
+	# li $10, 10			#$0 = 10. 10 em binário é: 1010
+	# li $11, 9			#$1 = 9. 9 em binário é: 1001	
+
+	j loop
+
+
+loop:
+	sw $1, 0($0)
+	addi $0, $0, 4
+	addi $1, $1, 1
+	slt $3, $1, $2
+	bne $3, $zero, loop
+
+	li $10, 16
+	li $11, 500
+	 
+	sw $11, 0($10)
+
